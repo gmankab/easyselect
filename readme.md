@@ -1,6 +1,7 @@
 # selection by gmanka
 
 simple and pretty tool for selecting items by keyboard in terminal
+[github.com/gmankab/easyselect](https://github.com/gmankab/easyselect)
 
 ```py
 from selection import Selection
