@@ -7,14 +7,17 @@ simple and pretty tool for selecting items by keyboard in terminal
 - [installation](#installation)
 - [usage](#usage)
 - [rich styles support](#rich-styles-support)
+- [long items list support](#long-items-list-support)
+- [page size](#page-size)
+- [supported buttons](#supported-buttons)
 
-### installation
+### installation[^](#navigation)
 
 ```sh
 pip install easyselect
 ```
 
-### usage
+### usage[^](#navigation)
 
 ```py
 from easyselect import Sel
@@ -30,7 +33,7 @@ answer = yes_or_no.choose()
 print(answer)
 ```
 
-### rich styles support
+### rich styles support[^](#navigation)
 
 [documentation](https://rich.readthedocs.io/en/stable/style.html)
 
@@ -47,7 +50,7 @@ yes_or_no = Sel(
 )
 ```
 
-### long items list support
+### long items list support[^](#navigation)
 
 ```py
 nums = Sel(
@@ -57,7 +60,7 @@ answer = nums.choose()
 print(answer)
 ```
 
-### page size
+### page size[^](#navigation)
 
 page_size arg allows to specify how much lines will be rendered on screen
 default value is 15
@@ -70,3 +73,10 @@ nums = Sel(
 answer = nums.choose()
 print(answer)
 ```
+
+### supported buttons[^](#navigation)
+
+- up, down, left, right
+- w, a, s, d
+- home, end
+- page up, page down
