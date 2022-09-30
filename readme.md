@@ -1,7 +1,20 @@
 # easyselect by gmanka
 
 simple and pretty tool for selecting items by keyboard in terminal
-[github.com/gmankab/easyselect](https://github.com/gmankab/easyselect)
+
+## navigation
+
+- [installation](#installation)
+- [usage](#usage)
+- [rich styles support](#rich-styles-support)
+
+### installation
+
+```sh
+pip install easyselect
+```
+
+### usage
 
 ```py
 from easyselect import Sel
@@ -17,7 +30,9 @@ answer = yes_or_no.choose()
 print(answer)
 ```
 
-selection also support [rich styles](https://rich.readthedocs.io/en/stable/style.html)
+### rich styles support
+
+[documentation](https://rich.readthedocs.io/en/stable/style.html)
 
 ```py
 yes_or_no = Sel(
@@ -30,4 +45,28 @@ yes_or_no = Sel(
         'red'
     ]
 )
+```
+
+### long items list support
+
+```py
+nums = Sel(
+    items = list(range(50))
+)
+answer = nums.choose()
+print(answer)
+```
+
+### page size
+
+page_size arg allows to specify how much lines will be rendered on screen
+default value is 15
+
+```py
+nums = Sel(
+    items = list(range(50)),
+    page_size = 3
+)
+answer = nums.choose()
+print(answer)
 ```
