@@ -21,7 +21,7 @@ Key = keyboard.Key
 system = platform.system()
 
 
-class Selection:
+class Sel:
     def __init__(
         self,
         items: list | tuple,
