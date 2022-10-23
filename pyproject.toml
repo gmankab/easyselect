@@ -5,7 +5,6 @@ build-backend = "hatchling.build"
 [project]
 dependencies = [
   "rich",
-  "pynput",
 ]
 name = "easyselect"
 version = "22.0.4"
