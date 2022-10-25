@@ -10,10 +10,8 @@ from rich.console import Console
 from dataclasses import dataclass
 import subprocess
 import platform
-import sys
 import os
 import curses as c
-import time
 
 traceback.install(show_locals=True)
 pretty.install()
@@ -111,9 +109,9 @@ class Sel:
                     break
                 case c.KEY_ENTER | Keys.enter:
                     break
-                case c.KEY_UP | c.KEY_LEFT | Keys.w | Keys.a:
+                case c.KEY_UP | c.KEY_LEFT | Keys.w | Keys.a | Keys.k:
                     self.chosen -= 1
-                case c.KEY_DOWN | c.KEY_RIGHT | Keys.s | Keys.d:
+                case c.KEY_DOWN | c.KEY_RIGHT | Keys.s | Keys.d | Keys.j:
                     self.chosen += 1
                 case Keys.s | Keys.d:
                     self.chosen += 1
