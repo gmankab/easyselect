@@ -5,9 +5,10 @@ build-backend = "hatchling.build"
 [project]
 dependencies = [
   "rich",
+  "windows-curses ; platform_system==\"Windows\"",
 ]
 name = "easyselect"
-version = "22.0.6"
+version = "22.0.7"
 authors = [
   { name="gmanka", email="gmankab@gmail.com" },
 ]

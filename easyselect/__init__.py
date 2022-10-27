@@ -11,7 +11,7 @@ from dataclasses import dataclass
 import subprocess
 import platform
 import os
-import curses as c
+import sys
 
 traceback.install(show_locals=True)
 pretty.install()
@@ -19,6 +19,7 @@ co = Console()
 p = co.print
 run = subprocess.getstatusoutput
 system = platform.system()
+import curses as c
 
 
 class Sel:
@@ -28,7 +29,7 @@ class Sel:
         styles: list | tuple = [],
         chosen: int = 0,
         page_size: int = 15,
-        text = None
+        text = None,
     ) -> None:
         self.items = items
         self.chosen = chosen
@@ -39,8 +40,12 @@ class Sel:
         if not styles:
             styles = [None] * len(self.items)
         self.styles = styles
+        self.parsed_text = None
 
-    def print(self):
+    def print(
+        self,
+        stdscr = None,
+    ):
         if self.chosen < 0:
             self.chosen = self.len - 1
         elif self.chosen >= self.len:
@@ -52,56 +57,80 @@ class Sel:
             end = self.chosen + 1
             self.start = end - self.page_size
         to_print = self.items[
-            self.start : end
+            self.start: end
         ]
 
+
+        extra_index = 0
         result = ''
+        if self.text:
+            if system == 'Windows':
+                if not self.parsed_text:
+                    co2 = Console(
+                        record = True,
+                    )
+                    co2.print(self.text)
+                    self.parsed_text = co2.export_text()
+
+                for extra_index, text in enumerate(
+                    self.parsed_text.split()
+                ):
+                    stdscr.addstr(extra_index, 0, text)
+                extra_index += 2
+            else:
+                with co.capture() as capture:
+                    co.print(
+                        self.text
+                    )
+                result += capture.get()
+
         for index, item in enumerate(to_print):
             index = self.start + index
             if index == self.chosen:
                 if system == 'Windows':
-                    item = f'[blue]➜[/blue]   [reverse]{item}[/reverse]'
+                    item = f'➜   {item}'
                 else:
                     item = f'[blue]➜[/blue]  [reverse]{item}[/reverse]'
             else:
                 item = f'    {item}'
-            with co.capture() as capture:
-                co.print(
-                    item,
-                    highlight = False,
-                    style = self.styles[index],
+
+            if system == 'Windows':
+                stdscr.addstr(
+                    index + extra_index, 0, item
                 )
-            result += capture.get() + '\r'
-        if self.text:
-            with co.capture() as capture:
-                co.print(
-                    self.text
+            else:
+                with co.capture() as capture:
+                    co.print(
+                        item,
+                        highlight=False,
+                        style=self.styles[index],
+                    )
+                result += capture.get()
+            if system != 'Windows':
+                print(
+                    "\033[H\033[J" + result.replace(
+                        '\n',
+                        '\n\r',
+                    )
                 )
 
-            result = capture.get() + '\r' + result
-
-        print(
-            "\033[H\033[J" + result.replace(
-                '\n',
-                '\n\r',
-            )
-        )
 
     def choose(
         self,
-        text = None,
+        text=None
     ):
         if text:
             self.text = text
+        if system != 'Windows':
+            os.system('tput civis')
         stdscr = c.initscr()
+        stdscr.keypad(True)
         c.noecho()
         c.cbreak()
-        os.system('tput civis')
-        stdscr.keypad(True)
         c.ungetch(0)
         key = None
         while True:
-            self.print()
+            self.print(stdscr)
             key = stdscr.getch()
             match key:
                 case Keys.esc:
@@ -134,9 +163,13 @@ class Sel:
 
         c.echo()
         c.nocbreak()
-        os.system('tput cnorm')
         stdscr.keypad(False)
         c.endwin()
+
+        if system != 'Windows':
+            os.system('tput cnorm')
+            if self.text:
+                co.print(self.text)
 
         if self.chosen is None:
             return None
