@@ -11,7 +11,6 @@ from dataclasses import dataclass
 import subprocess
 import platform
 import os
-import sys
 
 traceback.install(show_locals=True)
 pretty.install()
@@ -73,7 +72,7 @@ class Sel:
                     self.parsed_text = co2.export_text()
 
                 for extra_index, text in enumerate(
-                    self.parsed_text.split()
+                    self.parsed_text.split('\n')
                 ):
                     stdscr.addstr(extra_index, 0, text)
                 extra_index += 2
@@ -113,7 +112,6 @@ class Sel:
                         '\n\r',
                     )
                 )
-
 
     def choose(
         self,
