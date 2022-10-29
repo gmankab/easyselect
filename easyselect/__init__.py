@@ -66,15 +66,14 @@ class Sel:
             stdscr.clear()
         if self.text:
             if system == 'Windows':
-                if not self.parsed_text:
-                    co2 = Console(
-                        record = True,
-                    )
-                    co2.print(self.text)
-                    self.parsed_text = co2.export_text()
+                co2 = Console(
+                    record = True,
+                )
+                co2.print(self.text)
+                parsed_text = co2.export_text()
 
                 for extra_index, text in enumerate(
-                    self.parsed_text.split('\n')
+                    parsed_text.split('\n')
                 ):
                     stdscr.addstr(extra_index, 0, text)
                 extra_index += 2
@@ -118,7 +117,7 @@ class Sel:
 
     def choose(
         self,
-        text=None
+        text = None
     ):
         if text:
             self.text = text
