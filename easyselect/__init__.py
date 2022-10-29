@@ -62,6 +62,8 @@ class Sel:
 
         extra_index = 0
         result = ''
+        if system == 'Windows':
+            stdscr.clear()
         if self.text:
             if system == 'Windows':
                 if not self.parsed_text:
