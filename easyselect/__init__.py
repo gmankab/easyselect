@@ -79,7 +79,8 @@ class Sel:
             else:
                 with co.capture() as capture:
                     co.print(
-                        self.text
+                        self.text,
+                        highlight = False,
                     )
                 result += capture.get()
 
@@ -101,7 +102,7 @@ class Sel:
                 with co.capture() as capture:
                     co.print(
                         item,
-                        highlight=False,
+                        highlight = False,
                         style=self.styles[index],
                     )
                 result += capture.get()
@@ -167,7 +168,10 @@ class Sel:
         if system != 'Windows':
             os.system('tput cnorm')
             if self.text:
-                co.print(self.text)
+                co.print(
+                    self.text,
+                    highlight = False,
+                )
 
         if self.chosen is None:
             return None
