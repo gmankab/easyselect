@@ -1,8 +1,5 @@
-#!/bin/python
-
-'''
-https://github.com/gmankab/easyselect
-'''
+# license: gnu gpl 3 https://gnu.org/licenses/gpl-3.0.en.html
+# sources: https://github.com/gmankab/reposter
 
 from rich import pretty
 from rich import traceback
