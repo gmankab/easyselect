@@ -1,6 +1,8 @@
 # easyselect by gmanka
 
-simple and pretty tool for selecting items by keyboard in terminal
+<img src="https://github.com/gmankab/easyselect/raw/main/img/transparent.png">
+
+tool for selecting items by keyboard in terminal
 
 ## navigation
 
