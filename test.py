@@ -1,5 +1,9 @@
 from easyselect import Sel
 
-a = Sel(
-    list(range(10))
+Sel(
+    items = [
+        'yes',
+        'no',
+    ],
+    text = 'please select yes or no'
 ).choose()

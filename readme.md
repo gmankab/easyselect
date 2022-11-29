@@ -6,6 +6,7 @@ simple and pretty tool for selecting items by keyboard in terminal
 
 - [installation](#installation)
 - [usage](#usage)
+- [print text while choosing](#print-text-while-choosing)
 - [rich styles support](#rich-styles-support)
 - [long items list support](#long-items-list-support)
 - [page size](#page-size)
@@ -33,9 +34,21 @@ answer = yes_or_no.choose()
 print(answer)
 ```
 
+### print text while choosing
+
+```py
+yes_or_no = Sel(
+    items = [
+        'yes',
+        'no',
+    ],
+    text = 'please select yes or no'
+)
+```
+
 ### rich styles support[^](#navigation)
 
-[documentation](https://rich.readthedocs.io/en/stable/style.html)
+linux only
 
 ```py
 yes_or_no = Sel(
@@ -50,19 +63,20 @@ yes_or_no = Sel(
 )
 ```
 
-### long items list support[^](#navigation)
+[rich styles documentation](https://rich.readthedocs.io/en/stable/style.html)
+
+### very long items list support[^](#navigation)
 
 ```py
 nums = Sel(
     items = list(range(50))
 )
-answer = nums.choose()
-print(answer)
 ```
 
 ### page size[^](#navigation)
 
 page_size arg allows to specify how much lines will be rendered on screen
+
 default value is 15
 
 ```py
@@ -70,13 +84,13 @@ nums = Sel(
     items = list(range(50)),
     page_size = 3
 )
-answer = nums.choose()
-print(answer)
 ```
 
 ### supported buttons[^](#navigation)
 
+user will able to use these buttons
+
 - up, down, left, right
-- w, a, s, d
+- w, a, s, d, j, k
 - home, end
 - page up, page down

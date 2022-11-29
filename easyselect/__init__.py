@@ -145,13 +145,13 @@ class Sel:
                 case Keys.s | Keys.d:
                     self.chosen += 1
                 case Keys.page_up:
-                    self.chosen -= self.page_size
+                    self.chosen -= self.page_size - 1
                     self.chosen = max(
                         self.chosen,
                         0
                     )
                 case Keys.page_down:
-                    self.chosen += self.page_size
+                    self.chosen += self.page_size - 1
                     self.chosen = min(
                         self.chosen,
                         self.len - 1
