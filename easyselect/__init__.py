@@ -89,7 +89,7 @@ class Sel:
             index = self.start + index
             if index == self.chosen:
                 if system == 'Windows':
-                    item = f'➜   {item}'
+                    item = f'>   {item}'
                 else:
                     item = f'[blue]➜[/blue]  [reverse]{item}[/reverse]'
             else:
