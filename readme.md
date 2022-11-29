@@ -36,7 +36,7 @@ answer = yes_or_no.choose()
 print(answer)
 ```
 
-### print text while choosing
+### print text while choosing[^](#navigation)
 
 ```py
 yes_or_no = Sel(
