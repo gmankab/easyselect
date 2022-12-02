@@ -2,7 +2,7 @@
 
 <img src="https://github.com/gmankab/easyselect/raw/main/img/transparent.png">
 
-tool for selecting items by keyboard in terminal
+a useful library that allows the user to select between multiple items in the console using the keyboard. Supports very long lists that don't fit on the screen, [rich styles](https://rich.readthedocs.io/en/stable/style.html), control with buttons `up`, `down`, `left`, `right`, `wasd`, `j`, `h`, `home`, `end`, `page up`, `page down`
 
 ## navigation
 
