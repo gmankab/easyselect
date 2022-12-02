@@ -13,6 +13,7 @@ tool for selecting items by keyboard in terminal
 - [long items list support](#long-items-list-support)
 - [page size](#page-size)
 - [supported buttons](#supported-buttons)
+- [license](#license)
 
 ### installation[^](#navigation)
 
@@ -96,3 +97,7 @@ user will able to use these buttons
 - w, a, s, d, j, k
 - home, end
 - page up, page down
+
+### license[^](#navigation)
+
+[gnu gpl 3](https://gnu.org/licenses/gpl-3.0.en.html)
