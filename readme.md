@@ -13,6 +13,7 @@ a useful library that allows the user to select between multiple items in the co
 - [long items list support](#long-items-list-support)
 - [page size](#page-size)
 - [supported buttons](#supported-buttons)
+- [changelog](#changelog)
 - [license](#license)
 
 ### installation[^](#navigation)
@@ -97,6 +98,11 @@ user will able to use these buttons
 - w, a, s, d, j, k
 - home, end
 - page up, page down
+
+### changelog[^](#navigation)
+
+you can read changelog [here](https://github.com/gmankab/easyselect/blob/main/changelog.md)
+
 
 ### license[^](#navigation)
 
