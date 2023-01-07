@@ -5,6 +5,7 @@ from rich import pretty
 from rich import traceback
 from rich.console import Console
 from dataclasses import dataclass
+from io import StringIO
 import subprocess
 import platform
 import os
@@ -65,6 +66,7 @@ class Sel:
             if system == 'Windows':
                 co2 = Console(
                     record = True,
+                    file = StringIO(),
                 )
                 co2.print(self.text)
                 parsed_text = co2.export_text()
@@ -88,7 +90,7 @@ class Sel:
                 if system == 'Windows':
                     item = f'>   {item}'
                 else:
-                    item = f'[blue]➜[/blue]  [reverse]{item}[/reverse]'
+                    item = f'[deep_sky_blue1]➜[/deep_sky_blue1]  [reverse]{item}[/reverse]'
             else:
                 item = f'    {item}'
 
@@ -165,16 +167,25 @@ class Sel:
 
         if system != 'Windows':
             os.system('tput cnorm')
-            if self.text:
-                co.print(
-                    self.text,
-                    highlight = False,
-                )
+        if self.text:
+            co.print(
+                self.text,
+                highlight = False,
+            )
 
         if self.chosen is None:
             return None
         else:
-            return self.items[self.chosen]
+            item = self.items[self.chosen]
+            if system != 'Windows':
+                co.print(
+                    f'[deep_sky_blue1]➜[/deep_sky_blue1]  [reverse]{item}[/reverse]'
+                )
+            else:
+                co.print(
+                    f'[deep_sky_blue1]>[/deep_sky_blue1]   [reverse]{item}'
+                )
+            return item
 
 
 @dataclass
